@@ -16,7 +16,7 @@ module.exports = {
 					throw err;
 				} else {
 					resolve();
-					console.log('Connected to DB ' + user + '@' + host);
+					console.log('Connected to database ' + user + '@' + host);
 				}
 			});
 		});
