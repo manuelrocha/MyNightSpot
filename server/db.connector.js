@@ -1,50 +1,28 @@
-let mysql = require('mysql');
+let Client = require('mariasql');
+
 
 module.exports = {
-
-	connect (host, user, password) {
-    	return new Promise((resolve, reject) => {
-			this.connection = mysql.createConnection({
-				host: host,
-				user: user,
-				password: password
-			});
-
-			this.connection.connect((err) => {
-				if (err) {
-					reject();
-					throw err;
-				} else {
-					resolve();
-					console.log('Connected to database ' + user + '@' + host);
-				}
-			});
+	connect: (host, user, password, db) => {
+		let client  =new Client({
+		  host: host,
+		  user: user,
+		  password: password,
+		  db: db
 		});
+
+		return client;
 	},
 
-	query (query) {
-		console.log('Query: ' + query);
-		return new Promise((resolve, reject) => {
-			this.connection.query(query, (err, result) => {
-				if (err) {
-					reject
-					throw err
-				} else  {
-					resolve(result);
-				}
-			});
-		});
-	},
+	query: (client) => {
 
-	insert (table, values) {
-		let query = 'INSERT INTO ' + TABLE + ' values(';
-
-		values.each((value) => {
-			query = query + value + ',';
+		client.query('select * from Event', function(err, rows) {
+		  if (err)
+		    throw err;
+		  console.dir(rows);
 		});
 
-		query = query + ')';
-
-		return 	this.query(query);
+		client.end();
 	}
-};
+}
+
+

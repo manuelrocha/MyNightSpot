@@ -1,7 +1,12 @@
 let sql = require('./db.connector');
 
-sql.connect('localhost', 'mns', 'mns').then(() => {
-	sql.query("select 1").then((result) => {
-		console.log(result)
-	}); 
-});
+let config = {
+		  host: 'localhost',
+		  user: 'mns',
+		  password: 'mns',
+		  db: 'mns'
+		};
+
+let x = sql.connect(config.host, config.user, config.password, config.db);
+sql.query(x);
+sql.query(x);
