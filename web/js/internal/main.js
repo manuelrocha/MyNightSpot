@@ -149,6 +149,7 @@
 					}
 
 				// Main.
+
 					$t._update = function() {
 						pos = 0;
 						rightLimit = (-1 * reelWidth) + $window.width();
@@ -160,6 +161,7 @@
 						$t._updatePos = function() { $reel.css('left', pos); };
 					else
 						$t._updatePos = function() { $reel.css('transform', 'translate(' + pos + 'px, 0)'); };
+
 
 				// Forward.
 					$forward
@@ -207,6 +209,8 @@
 				// Init.
 					$window.load(function() {
 
+						var timerId;
+
 						reelWidth = $reel[0].scrollWidth;
 
 						skel.on('change', function() {
@@ -239,6 +243,24 @@
 							reelWidth = $reel[0].scrollWidth;
 							$t._update();
 						}).trigger('resize');
+
+						$items.off('mouseover').on('mouseover', function (e) {
+							window.clearInterval(timerId);
+						});
+
+						$items.off('mouseout').on('mouseout', function () {
+							timerId = window.setInterval(function() {
+								pos -= settings.carousels.speed;
+
+								if (pos <= rightLimit)
+								{
+									window.clearInterval(timerId);
+									pos = rightLimit;
+								}
+
+								$t._updatePos();
+							}, 50);
+						});
 
 					});
 
