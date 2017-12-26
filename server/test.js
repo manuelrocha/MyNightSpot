@@ -1,10 +1,10 @@
 let sql = require('./db.connector');
 
 let config = {
-		  host: 'localhost',
-		  user: 'mns',
-		  password: 'mns',
-		  db: 'mns'
+		  host: '',
+		  user: '',
+		  password: '',
+		  db: ''
 		};
 
 let x = sql.connect(config.host, config.user, config.password, config.db);
