@@ -249,17 +249,36 @@
 						});
 
 						$items.off('mouseout').on('mouseout', function () {
-							timerId = window.setInterval(function() {
-								pos -= settings.carousels.speed;
 
-								if (pos <= rightLimit)
-								{
-									window.clearInterval(timerId);
-									pos = rightLimit;
-								}
+							if (pos > rightLimit) {
 
-								$t._updatePos();
-							}, 50);
+								timerId = window.setInterval(function() {
+									pos -= settings.carousels.speed;
+
+									if (pos <= rightLimit)
+									{
+										window.clearInterval(timerId);
+										pos = rightLimit;
+									}
+
+									$t._updatePos();
+								}, 50);
+
+							} else {
+								timerId = window.setInterval(function() {
+									pos += settings.carousels.speed;
+
+									if (pos >= leftLimit) {
+
+										window.clearInterval(timerId);
+										pos = leftLimit;
+
+									}
+
+									$t._updatePos();
+								}, 50);
+							}
+
 						});
 
 					});
