@@ -6,6 +6,7 @@ insert into Localization (Localization_ID,Country,District,City) values (4,"Port
 insert into Localization (Localization_ID,Country,District,City) values (5,"Portugal","Braga","Esposende");
 insert into Localization (Localization_ID,Country,District,City) values (6,"Portugal","Braga","Guimarães");
 insert into Localization (Localization_ID,Country,District,City) values (7,"Portugal","Braga","Amares");
+insert into Localization (Localization_ID,Country,District,City) values (8,"Portugal","Porto","Porto");
 	
 commit;
 
