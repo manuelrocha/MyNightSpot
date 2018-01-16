@@ -1,0 +1,8 @@
+{
+		"GetLocalizations": "getLocalizations",
+		"GetPlaces": "getPlaces",
+		"GetPlacesByLocal": "getPlacesByLocal",
+		"GetEvents": "getEvents",
+		"GetEventsByLocal": "getEventsByLocal",
+		"GetEventsByPlace": "getEventsByPlace",
+}
