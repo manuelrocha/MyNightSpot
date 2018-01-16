@@ -11,8 +11,11 @@ let operations = {
 		}
 }
 
-function Operations (args){
-		return operations[args];
-}
 
-module.exports = Operations;
+module.exports = {
+
+	exec: (args) =>{
+			return operations[args];
+	}
+
+};
