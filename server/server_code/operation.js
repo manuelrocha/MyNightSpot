@@ -6,8 +6,10 @@ let operations = {
 		"GetEventsByLocal": "getEventsByLocal",
 		"GetEventsByPlace": "getEventsByPlace",
 
-		"GetPrincipalImages": function  () {
-			 console.log("cenas");
+		"GetPrincipalImages": function  (sql) {
+			sql.execQuery(sql, "select * from Event").then((data) => {
+				console.log(data);
+			});
 		}
 }
 

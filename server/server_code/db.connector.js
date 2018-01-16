@@ -29,11 +29,11 @@ module.exports = {
 		client.end();
 	},
 
-	getPlaces: (client) => {
+	execQuery: (client, query) => {
 		return new Promise((resolve, reject) => {
 			let i =0;
 
-			client.query('SELECT * FROM Place',
+			client.query(query,
     		function(err, rows) {
 
 	 	 			if (err) {
@@ -50,22 +50,5 @@ module.exports = {
 
 		client.end();
 		});
-	},
-
-	execQuery: (query) => {
-		client.query(query,
-			function(err, rows) {
-				if (err) {
-					reject();
-				}
-
-				let array = [];
-				for (i in rows) {
-					array.push(rows[i]);
-				}
-
-				resolve(array);
-
-			});
 	}
 }
