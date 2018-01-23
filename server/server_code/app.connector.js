@@ -1,6 +1,6 @@
 let http = require('http');
 let fs = require('fs');
-let sql = require('./db.connector').connect();
+let sql = require('./db.connector');
 let operation = require('./operation.js');
 
 let functions = {
@@ -36,7 +36,7 @@ http.createServer(function (req, res) {
 	//functions.writeStr(res);
 
 	let args = req.url.replace('/', '').split('?');
-	operation.exec(args[1]).apply(this,sql);
+	operation.exec(args[1]).call(undefined, sql, res, fs);
 
 	//sql.execQuery(query).then((data) => {
 		//console.log(data);
