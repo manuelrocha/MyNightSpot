@@ -33,23 +33,23 @@
 				<div class="reel">
 
 					<article>
-						<a href="#" class="image featured"><img src="../images/1.jpg" alt="" /></a>
+						<a href="#" class="image featured"><img id="img1" src="../images/1.jpg" alt="" /></a>
 					</article>
 
 					<article>
-						<a href="#" class="image featured"><img src="../images/2.jpg" alt="" /></a>
+						<a href="#" class="image featured"><img id="img2" src="../images/2.jpg" alt="" /></a>
 					</article>
 
 					<article>
-						<a href="#" class="image featured"><img src="../images/3.jpg" alt="" /></a>
+						<a href="#" class="image featured"><img id="img3" src="../images/3.jpg" alt="" /></a>
 					</article>
 
 					<article>
-						<a href="#" class="image featured"><img src="../images/4.jpg" alt="" /></a>
+						<a href="#" class="image featured"><img id="img4" src="../images/4.jpg" alt="" /></a>
 					</article>
 
 					<article>
-						<a href="#" class="image featured"><img src="../images/5.jpg" alt="" /></a>
+						<a href="#" class="image featured"><img id="img5" bind="img" src="../images/5.jpg" alt="" /></a>
 					</article>
 				</div>
 			</section>
@@ -63,17 +63,20 @@
 		<script type="text/javascript">
 		$(function () {
 
-			var xmlhttp = new XMLHttpRequest();
-			var url = "http://192.168.1.76:8080?GetPrincipalImages";
+			for (var i = 0; i < 5; i++) {
+				var xmlhttp = new XMLHttpRequest();
+				var url = "http://localhost:8080?GetPrincipalImages";
 
-			xmlhttp.onreadystatechange = function() {
+				xmlhttp.onreadystatechange = function() {
 			    if (this.readyState == 4 && this.status == 200) {
-			        console.log(JSON.parse(this.responseText));
-			    }
-			};
-			xmlhttp.open("GET", url, true);
-			xmlhttp.send();
+							var imgs = $('#img'+i).attr('src', "data:image/gif;base64,'"  + this.responseText +"'");
 
+		        //console.log(JSON.parse(this.responseText));
+			    }
+				};
+				xmlhttp.open("GET", url, true);
+				xmlhttp.send();
+			}
 		});
 		</script>
 
