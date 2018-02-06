@@ -36,7 +36,18 @@ http.createServer(function (req, res) {
 	//functions.writeStr(res);
 
 	let args = req.url.replace('/', '').split('?');
-	operation.exec(args[1]).call(undefined, sql, res, fs);
+	
+	try {
+		let map = [];
+		for (i in args) {
+			if(i>1)
+				map.push(args[i]);
+	    }
+	    
+		operation.exec(args[1]).call(undefined, sql, res, fs,map);
+	} catch(err){
+			console.log(" Erro a executar a função "+args[1]);
+	}
 
 	//sql.execQuery(query).then((data) => {
 		//console.log(data);

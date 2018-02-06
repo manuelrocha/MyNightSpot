@@ -37,7 +37,8 @@ module.exports = {
     		function(err, rows) {
 
 	 	 			if (err) {
-	    			reject();
+	 	 				console.log(err);
+	    				reject();
 					}
 
 	    		let array = [];
