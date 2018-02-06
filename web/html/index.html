@@ -41,23 +41,6 @@
 
 	<footer>
 
-		<script type="text/javascript">
-		$(function () {
-
-			var xmlhttp = new XMLHttpRequest();
-			var url = "http://192.168.1.76:8080?GetPrincipalImages";
-
-			xmlhttp.onreadystatechange = function() {
-		    	if (this.readyState == 4 && this.status == 200) {
-					$('#reel').append(this.responseText);
-		    	}
-			};
-			xmlhttp.open("GET", url, true);
-			xmlhttp.send();
-			
-		});
-		</script>
-
 				<script type="text/javascript">
 				$(function () {
 								$.get("html/footer.html", function (data) {
