@@ -1,5 +1,27 @@
 let operations = {
-		"GetLocalizations": "getLocalizations",
+		"GetLocalizations": function  (sql, res, fs) {
+			
+			sql.execQuery(sql.connect(), "select City /*Localization_ID,Country,District*/ from Localization").then((data) => {
+				
+					let id = 0;
+					let locals="";
+					
+					while(data[id].Path_Flyer !== undefined) {
+						let local = data[id];
+						locals = locals + '?' + local;
+						id++;
+					}
+					console.log(locals);
+					res.writeHead(200, {
+						'Content-type':'text/html',
+						'Access-Control-Allow-Origin' : '*',
+						'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE'
+					});
+					
+					res.end(imgHtml);
+
+			});
+		},
 		"GetPlaces": "getPlaces",
 		"GetPlacesByLocal": "getPlacesByLocal",
 		"GetEvents": "getEvents",
@@ -24,9 +46,7 @@ let operations = {
 						'Access-Control-Allow-Origin' : '*',
 						'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE'
 					});
-
-					console.log(imgHtml);
-
+					
 					res.end(imgHtml);
 
 			});
