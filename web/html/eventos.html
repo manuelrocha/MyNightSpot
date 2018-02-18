@@ -53,10 +53,60 @@
 						} );
 						</script>
 
-						<select class="js-example-basic-single" name="state">
+						<script>
+						//cities
+							$( function() {
+								var xmlhttp = new XMLHttpRequest();
+								var url = "http://192.168.1.76:8080?GetLocalizations";
+
+								xmlhttp.onreadystatechange = function() {
+									if (this.readyState == 4 && this.status == 200) {
+										var localizations = JSON.parse(this.responseText);
+										for (var id in localizations) {
+											$("#Localizations").append('<option value=' + id + '>' + localizations[id] + '</option>');
+										}
+									}
+								};
+								xmlhttp.open("GET", url, true);
+								xmlhttp.send();
+							});
+						</script>
+
+						<select class="js-example-basic-single" id="Localizations" onchange="filterPlace()">
  							<option value=""></option>
-							<option value="braga">Braga</option>
-						  <option value="porto">Porto</option>
+						</select>
+
+						<script>
+							function filterPlace() {
+								 var xmlhttp = new XMLHttpRequest();
+								 var url = "http://192.168.1.76:8080?GetPlaces";
+
+								 xmlhttp.onreadystatechange = function() {
+									 if (this.readyState == 4 && this.status == 200) {
+										 var places = JSON.parse(this.responseText);
+										 var city = $("#Localizations").val();
+
+										 $('#places')
+										     .find('option')
+										     .remove()
+										     .end();
+
+										 for (var id in places) {
+											 for (var idx in places[id]) {
+												 if (idx == city) {
+													 $("#places").append('<option value=' + id + '>' + places[id][idx] + '</option>');
+												 }
+											 }
+										 }
+									 }
+								 };
+								 xmlhttp.open("GET", url, true);
+								 xmlhttp.send();
+							}
+						</script>
+
+						<select class="js-example-basic-single" id="places">
+							<option value=""></option>
 						</select>
 
 				</div>
