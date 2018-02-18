@@ -6,7 +6,7 @@ let p = require('./place');
 module.exports = {
 	connect: () => {
 
-		let dbConf = JSON.parse(fs.readFileSync('databaseconf.json', 'utf8'));
+		let dbConf = JSON.parse(fs.readFileSync('../../conf/databaseconf.json', 'utf8'));
 
 		let client  =new Client({
 		  host: dbConf.host,
