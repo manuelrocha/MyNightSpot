@@ -8,10 +8,17 @@
 <script src="../js/external/util.js"></script>
 <script src="../js/internal/main.js"></script>
 
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 	<head>
 		<title>Eventos</title>
 		<meta charset="utf-8"/>
     <link rel="stylesheet" href="../css/main.css"/>
+
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
   </head>
   <body>
 
@@ -26,47 +33,36 @@
 				</ul>
       </nav>
 
-      <div class="wrapper style1">
+      <div class="wrapper style1 row">
 
-      					<section id="features" class="container special">
-      						<header>
-      							<h2>Próximos Eventos</h2>
-      						</header>
-      						<div class="row">
-      							<article class="4u 12u(mobile) special">
-      								<a href="#" class="image featured"><img src="../images/1.jpg" alt="" /></a>
-      								<header>
-      									<h3><a href="#">Engenharia em Euforia</a></h3>
-      								</header>
-      								<p>
-      									Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam
-      									porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
-      								</p>
-      							</article>
-      							<article class="4u 12u(mobile) special">
-      								<a href="#" class="image featured"><img src="../images/2.jpg"  alt="" /></a>
-      								<header>
-      									<h3><a href="#">Bibas Mulheres</a></h3>
-      								</header>
-      								<p>
-      									Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam
-      									porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
-      								</p>
-      							</article>
-      							<article class="4u 12u(mobile) special">
-      								<a href="#" class="image featured"><img src="../images/2.jpg"  alt="" /></a>
-      								<header>
-      									<h3><a href="#">Gata na Praia</a></h3>
-      								</header>
-      								<p>
-      									Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam
-      									porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
-      								</p>
-      							</article>
-      						</div>
-      					</section>
+				<div class="4u">
+						<p>aaa</p>
+				</div>
 
-      				</div>
+				<div class="4u">
+						<p>aaa</p>
+				</div>
+
+				<div class="4u">
+					<input type="text" id="datepicker" size="30">
+					<script>
+						$( function() {
+							$( "#datepicker" ).datepicker({
+								showAnim: 'slideDown'
+							});
+						} );
+						</script>
+
+						<select class="js-example-basic-single" name="state">
+ 							<option value=""></option>
+							<option value="braga">Braga</option>
+						  <option value="porto">Porto</option>
+						</select>
+
+				</div>
+
+
+			</div>
     </body>
       <footer>
 

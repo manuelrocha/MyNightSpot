@@ -290,7 +290,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 	};
 
 
-	var getRpincipalImages = function() {
+	var getPincipalImages = function() {
 
 		var promise = new Promise(function(resolve, reject) {
 
@@ -312,7 +312,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 	};
 
-	getRpincipalImages().then(function() {
+	getPincipalImages().then(function() {
 		start();
 	});
 
