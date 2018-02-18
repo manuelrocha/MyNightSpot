@@ -2,5 +2,6 @@
 		"host": "localhost",
 		"user": "mns",
 		"password": "mns",
-		"dataBase": "mns"
+		"dataBase": "mns",
+		"charset": "utf8"
 }

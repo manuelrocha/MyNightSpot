@@ -1,6 +1,5 @@
 let Client = require('mariasql');
 let fs = require('fs');
-let p = require('./place');
 
 
 module.exports = {
@@ -12,7 +11,8 @@ module.exports = {
 		  host: dbConf.host,
 		  user: dbConf.user,
 		  password: dbConf.password,
-		  db: dbConf.dataBase
+		  db: dbConf.dataBase,
+		  charset: dbConf.charset
 		});
 
 		return client;
@@ -48,6 +48,7 @@ module.exports = {
 
     			resolve(array);
 			});
+
 
 		client.end();
 		});
