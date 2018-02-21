@@ -45,15 +45,16 @@ let operations = {
 			});
 		},
 		"GetPlacesByLocal": function  (sql, res, fs, map) {			
-			sql.execQuery(sql.connect(), "select Name /*Place_ID,Address, Rating, Description, Path_Galery,Visible_Flag,Contacts,Schedule, GPS, Localization_ID, Type, Facebook,URL*/ from Place where Localization_ID=(select Localization_ID from Localization where City='"+map[0]+"')").then((data) => {
+			sql.execQuery(sql.connect(), "select Place_ID,Name,Description,Path_Galery /*Address, Rating, ,Visible_Flag,Contacts,Schedule, GPS, Localization_ID, Type, Facebook,URL*/ from Place where Localization_ID='"+map[0]+"'").then((data) => {
 				
 					let id = 0;
-					let places="";
- 
-					
-					while(data[id].Name !== undefined) {
-						let place = data[id].Name;
-						places = places + '?' + place;
+					let imgHtml='';
+
+					console.log(data);
+					while(data[id].Path_Galery !== undefined) {
+						let imgData = Buffer.from(fs.readFileSync(data[id].Path_Galery+"/principal.jpg")).toString('base64');
+						imgHtml = imgHtml + '<section class="spotlight"><div class="image"><img src="data:image/jpeg;base64,' + imgData + '" alt="" /></div><div class="content">';
+						imgHtml = imgHtml + '<h2>' + data[id].Name + '</h2><p>' + data[id].Description + '</div></section>';
 						id++;
 					}
 
@@ -62,7 +63,7 @@ let operations = {
 						'Access-Control-Allow-Origin' : '*',
 						'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE'
 					});
-					res.end(places);
+					res.end(imgHtml);
 
 			});
 		},
