@@ -1,0 +1,112 @@
+<html>
+  <head>
+    <title>My Night Spot</title>
+    <meta charset="utf-8"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <!-- Select 2-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <!--Internal-->
+    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
+
+  </head>
+
+  <body>
+    <div class="container-fluid">
+
+      <!-- MENU -->
+      <div class="row image-backgroud">
+        <div class="col-sm-12">
+
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button"
+              id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false"><i class="fa fa-bars"></i></button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </div>
+          </div>
+
+          </div>
+        </div>
+        <!-- MENU -->
+
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <!-- Calendar -->
+          <input type="hidden" type="text"  id="datepicker" size="0">
+          <i class="col-sm-2 fa fa-calendar calendar" id="icon-calendar"></i>
+
+          <script>
+						$( function() {
+							$( "#datepicker" ).datepicker({
+								showAnim: 'slideDown',
+								buttonImageOnly: true
+							});
+						});
+
+						$("#icon-calendar").click(function() {
+							if (!$("#datepicker").datepicker( "widget" ).is(":visible")) {
+						  	$("#datepicker").datepicker("show");
+							}
+						});
+          </script>
+
+          <!-- Clubs -->
+          <div class="col-sm-3" id=cities >
+          </div>
+
+          <script>
+                $("#cities").select2({
+                  placeholder: "Select City",
+                  allowClear: true,
+                  data: [{id: 0, text: 'enhancement' }, {id: 1, text: 'bug' },{id: 2, text: 'duplicate' }]
+                });
+          </script>
+
+          <div class="col-sm-3" id=clubs >
+          </div>
+
+          <script>
+                $("#clubs").select2({
+                  placeholder: "Select Club",
+                  allowClear: true,
+                  data: [{id: 0, text: 'enhancement' }, {id: 1, text: 'bug' },{id: 2, text: 'duplicate' }]
+                });
+          </script>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="height:400px;">
+      <div class="col-sm-12">
+      </div>
+    </div>
+
+  </body>
+
+  <footer>
+  </footer>
+
+</html>
