@@ -58,42 +58,93 @@
           <i class="col-sm-2 fa fa-calendar calendar" id="icon-calendar"></i>
 
           <script>
-						$( function() {
-							$( "#datepicker" ).datepicker({
-								showAnim: 'slideDown',
-								buttonImageOnly: true
-							});
-						});
+            $( function() {
+              $( "#datepicker" ).datepicker({
+                showAnim: 'slideDown',
+                buttonImageOnly: true
+              });
+            });
 
-						$("#icon-calendar").click(function() {
-							if (!$("#datepicker").datepicker( "widget" ).is(":visible")) {
-						  	$("#datepicker").datepicker("show");
-							}
-						});
+            $("#icon-calendar").click(function() {
+              if (!$("#datepicker").datepicker( "widget" ).is(":visible")) {
+                $("#datepicker").datepicker("show");
+              }
+            });
           </script>
+          <script>
+            //cities
+              $( function() {
+                var xmlhttp = new XMLHttpRequest();
+                var url = "http://192.168.1.76:8080?GetLocalizations";
 
+                xmlhttp.onreadystatechange = function() {
+                  if (this.readyState == 4 && this.status == 200) {
+                    var localizations = JSON.parse(this.responseText);
+                    var data = [];
+                    for (var id in localizations) {
+                      $("#Localizations").append('<option value=' + id + '>' + localizations[id] + '</option>');
+                      data.push({id:id, text: localizations[id]});
+                    }
+
+                    $("#cities").select2({
+                      placeholder: "Select City",
+                      allowClear: true,
+                      data: data
+                    }).on('change', function(e) {
+                      var xmlhttp = new XMLHttpRequest();
+                      var url = "http://192.168.1.76:8080?GetPlaces";
+
+                       xmlhttp.onreadystatechange = function() {
+                         if (this.readyState == 4 && this.status == 200) {
+                           var places = JSON.parse(this.responseText);
+                           var city = $("#cities").select2('data')[0].id;
+                           var data =[];
+
+                           for (var id in places) {
+                             for (var idx in places[id]) {
+                               if (idx == city) {
+                                data.push({
+                                  id:id,
+                                  text: places[id][idx]
+                                });
+                               }
+                             }
+                           }
+
+                          $("#clubs").select2('destroy');
+                              $("#clubs").select2({
+                                  placeholder: "Select Club",
+                                  allowClear: true,
+                                  data: data
+                            });
+                         }
+                       };
+                       xmlhttp.open("GET", url, true);
+                       xmlhttp.send();
+                     });
+                  }
+                };
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+              });
+            </script>
+
+            
           <!-- Clubs -->
           <div class="col-sm-3" id=cities >
           </div>
-
-          <script>
-                $("#cities").select2({
-                  placeholder: "Select City",
-                  allowClear: true,
-                  data: [{id: 0, text: 'enhancement' }, {id: 1, text: 'bug' },{id: 2, text: 'duplicate' }]
-                });
-          </script>
 
           <div class="col-sm-3" id=clubs >
           </div>
 
           <script>
-                $("#clubs").select2({
+            $("#clubs").select2({
                   placeholder: "Select Club",
                   allowClear: true,
-                  data: [{id: 0, text: 'enhancement' }, {id: 1, text: 'bug' },{id: 2, text: 'duplicate' }]
+                  data: []
                 });
-          </script>
+          
+           </script>
 
         </div>
       </div>
