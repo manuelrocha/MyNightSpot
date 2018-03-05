@@ -50,7 +50,6 @@ let operations = {
 					let id = 0;
 					let imgHtml='';
 
-					console.log(data);
 					while(data[id].Path_Galery !== undefined) {
 						let imgData = Buffer.from(fs.readFileSync(data[id].Path_Galery+"/principal.jpg")).toString('base64');
 						imgHtml = imgHtml + '<section class="spotlight"><div class="image"><img src="data:image/jpeg;base64,' + imgData + '" alt="" /></div><div class="content">';

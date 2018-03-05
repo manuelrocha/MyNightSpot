@@ -32,8 +32,8 @@ let functions = {
 
 http.createServer(function (req, res) {
 
-	//console.log(req.url);
-	//functions.writeStr(res);
+	//let conip=req.connection;
+	//console.log(conip.remoteAddress);
 
 	let args = req.url.replace('/', '').split('?');
 	
@@ -43,7 +43,6 @@ http.createServer(function (req, res) {
 			if(i>1)
 				map.push(args[i]);
 	    }
-	    console.log(args);
 		operation.exec(args[1]).call(undefined, sql, res, fs,map);
 	} catch(err){
 			console.log(" Erro a executar a função "+args[1]);
