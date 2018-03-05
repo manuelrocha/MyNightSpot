@@ -18,9 +18,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <!-- Select 2-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.js"></script>
     <!--Internal-->
     <link rel="stylesheet" type="text/css" href="../css/main.css"/>
 
@@ -53,24 +52,12 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12">
-          <!-- Calendar -->
-          <input type="hidden" type="text"  id="datepicker" size="0">
-          <i class="col-sm-2 fa fa-calendar calendar" id="icon-calendar"></i>
 
-          <script>
-            $( function() {
-              $( "#datepicker" ).datepicker({
-                showAnim: 'slideDown',
-                buttonImageOnly: true
-              });
-            });
+          <!-- Clubs -->
+          <div class="col-sm-3" >
+             <input type="hidden" style="width:100%" id=cities >
+          </div>
 
-            $("#icon-calendar").click(function() {
-              if (!$("#datepicker").datepicker( "widget" ).is(":visible")) {
-                $("#datepicker").datepicker("show");
-              }
-            });
-          </script>
           <script>
             //cities
               $( function() {
@@ -89,7 +76,8 @@
                     $("#cities").select2({
                       placeholder: "Select City",
                       allowClear: true,
-                      data: data
+                      data: data,
+                      minimumResultsForSearch: -1
                     }).on('change', function(e) {
                       var xmlhttp = new XMLHttpRequest();
                       var url = "http://192.168.1.76:8080?GetPlaces";
@@ -97,7 +85,7 @@
                        xmlhttp.onreadystatechange = function() {
                          if (this.readyState == 4 && this.status == 200) {
                            var places = JSON.parse(this.responseText);
-                           var city = $("#cities").select2('data')[0].id;
+                           var city = $("#cities").select2('val');
                            var data =[];
 
                            for (var id in places) {
@@ -115,7 +103,8 @@
                               $("#clubs").select2({
                                   placeholder: "Select Club",
                                   allowClear: true,
-                                  data: data
+                                  data: data,
+                                  minimumResultsForSearch: -1
                             });
                          }
                        };
@@ -129,22 +118,39 @@
               });
             </script>
 
-            
-          <!-- Clubs -->
-          <div class="col-sm-3" id=cities >
-          </div>
-
-          <div class="col-sm-3" id=clubs >
+          <div class="col-sm-3"  >
+            <input type="hidden" style="width:100%" id=clubs >
           </div>
 
           <script>
             $("#clubs").select2({
-                  placeholder: "Select Club",
-                  allowClear: true,
-                  data: []
-                });
-          
-           </script>
+              placeholder: "Select Club",
+              allowClear: true,
+              data: [],
+              minimumResultsForSearch: -1
+            });
+         </script>
+
+         <!-- Calendar -->
+         <div class="col-sm-3">
+           <input type="hidden" type="text"  id="datepicker" size="0">
+           <i class="col-sm-2 fa fa-calendar calendar" id="icon-calendar"></i>
+         </div>
+
+         <script>
+           $( function() {
+             $( "#datepicker" ).datepicker({
+               showAnim: 'slideDown',
+               buttonImageOnly: true
+             });
+           });
+
+           $("#icon-calendar").click(function() {
+             if (!$("#datepicker").datepicker( "widget" ).is(":visible")) {
+               $("#datepicker").datepicker("show");
+             }
+           });
+         </script>
 
         </div>
       </div>
