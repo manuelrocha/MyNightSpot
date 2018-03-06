@@ -39,7 +39,7 @@ body {
 
 .image-backgroud {
   background: url(../images/mns.jpg) no-repeat center fixed;
-  background-size: cover;
+  background-size: all;
   margin-bottom: 15px;
   height: 110%;
   width: 110%;
