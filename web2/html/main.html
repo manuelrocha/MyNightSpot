@@ -179,91 +179,45 @@
       </div>
     </div>
 
-    <div class="col-sm-12" align="center">
-       <div class="col-sm-3" align="center">
-          <div class="boxed">
-            <div class="title">
-              <h3>Dona Rosa Disco</h3>
-            </div>
-            <img src="../images/1.jpeg"  style="height:70%" >
-            <div class="date">
-              <div class="col-sm-3">
-                <h4>22 FEV</h4>
-              </div> 
-              <div class="col-sm-9">
-                <h4>Noite Da Mulher </h4>
-              </div>
-            </div>          
-        </div>
-       </div>
-        <div class="col-sm-3">
-          <div class="boxed">
-            <div class="boxed.title">
-              This text is enclosed in a box.
-            </div>
-            <img src="../images/1.jpeg"  style="height:80%" >
-            <div class="boxed.date">
-              This text is enclosed in a box.
-            </div>          
-        </div>
-       </div>
-        <div class="col-sm-3">
-          <div class="boxed">
-            <div class="boxed.title">
-              This text is enclosed in a box.
-            </div>
-            <img src="../images/1.jpeg"  style="height:80%" >
-            <div class="boxed.date">
-              This text is enclosed in a box.
-            </div>          
-        </div>
-       </div>
-        <div class="col-sm-3">
-          <div class="boxed">
-            <div class="boxed.title">
-              This text is enclosed in a box.
-            </div>
-            <img src="../images/1.jpeg"  style="height:80%" >
-            <div class="boxed.date">
-              This text is enclosed in a box.
-            </div>          
-        </div>
-       </div>
-        <div class="col-sm-3">
-          <div class="boxed">
-            <div class="boxed.title">
-              This text is enclosed in a box.
-            </div>
-            <img src="../images/1.jpeg"  style="height:80%" >
-            <div class="boxed.date">
-              This text is enclosed in a box.
-            </div>          
-        </div>
-       </div>
-        <div class="col-sm-3">
-          <div class="boxed">
-            <div class="boxed.title">
-              This text is enclosed in a box.
-            </div>
-            <img src="../images/1.jpeg"  style="height:80%" >
-            <div class="boxed.date">
-              This text is enclosed in a box.
-            </div>          
-        </div>
-       </div>
-        <div class="col-sm-3">
-          <div class="boxed">
-            <div class="boxed.title">
-              This text is enclosed in a box.
-            </div>
-            <img src="../images/1.jpeg"  style="height:80%" >
-            <div class="boxed.date">
-              This text is enclosed in a box.
-            </div>          
-        </div>
-       </div>
+    <script>
+      //cities
+        $( function() {
+          var xmlhttp = new XMLHttpRequest();
+          var url = "http://192.168.1.76:8080?GetEvents";
 
-     </div>
+          xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              var events = JSON.parse(this.responseText);
+              for (var id in events) {
+
+                var box ='<div class="col-sm-3" align="center"><div class="boxed">' +
+                          '<div class="title">' +
+                            '<h3>' + events[id].placeName +'</h3>'+
+                          '</div>'+
+                          '<img src="data:image/jpeg;base64,' + events[id].imageData  + '" style="height:70%" >'+
+                          '<div class="detailevent">'+
+                            '<div class="col-sm-3 date">' +
+                              '<h4>' + events[id].eventDate + '</h4>'+
+                            '</div> '+
+                            '<div class="col-sm-9 eventName">'+
+                              '<h4>' + events[id].eventName + ' </h4>'+
+                            '</div>'+
+                          '</div>'+
+                      '</div>'+
+                    '</div>';  
+
+                  $( "#events" ).append(box);
+              }
+            }
+          };
+          xmlhttp.open("GET", url, true);
+          xmlhttp.send();
+        });
+    </script>
+
+    <div class="col-sm-12" id="events" align="center">
+
+    </div>
 
     <div class="row">
       <div class="col-sm-12" style="height:10%;">

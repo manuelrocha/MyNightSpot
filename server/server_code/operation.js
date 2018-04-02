@@ -66,7 +66,6 @@ let operations = {
 
 			});
 		},
-		"GetEvents": "getEvents",
 		"GetFooter":  function  (sql, res, fs, map) {
 					let imgHtml="";
 					let footer = JSON.parse(fs.readFileSync('../../conf/footer.json', 'utf8'));
@@ -108,6 +107,34 @@ let operations = {
 					
 					res.end(imgHtml);
 
+			});
+		},
+
+		GetEvents: function  (sql, res, fs, map) {	
+			let query = "SELECT  e.Name, upper(date_format( e.Date, '%d %b')) AS \"EventDate\", e.Path_Flyer, p.Localization_Id, p.Name AS \"Place\" FROM Event e INNER JOIN Place p ON p.Place_Id = e.Place_Id";
+
+			sql.execQuery(sql.connect(), query).then((data) => {
+				let id = 0;
+				let result = {};
+				
+				while(data[id].Path_Flyer !== undefined) {	
+					result[id] = {
+						eventName: data[id].Name,
+						eventDate: data[id].EventDate,
+						placeName: data[id].Place,
+						imageData: Buffer.from(fs.readFileSync(data[id].Path_Flyer)).toString('base64')
+					}
+
+					id++;
+				}
+
+				res.writeHead(200, {
+					'Content-type':'text/html',
+					'Access-Control-Allow-Origin' : '*',
+					'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE'
+				});
+					
+				res.end(JSON.stringify(result));
 			});
 		}
 }
