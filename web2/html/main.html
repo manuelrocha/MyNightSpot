@@ -37,24 +37,56 @@
         <a href="#">Eventos</a>
         <a href="#">Contactos</a>
     </div>
-    <div class="container-fluid">
+    
+    <div class="no-class">
 
       <!-- MENU -->
-      <div class="image-backgroud">
-        <div class="col-sm-12">
+      <div class="col-sm-12 header" id="header" style="padding: 0%;">
 
-          <div class="dropdown" onclick="openNav()">
-            <button class="btn btn-secondary dropdown-toggle" type="button"
+        <script type="text/javascript">
+          $( function() {
+            
+            var header;
+            
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+
+                header = '<div class="col-sm-12 mobile" align="center">' +
+                         '<img class="mobile" src="../images/logo/alt2.png">' +
+                         '</div>';
+
+            } else {
+
+              header = '<div class="col-sm-12">' +
+                       '<img style="height: 80%; width: 100%;" src="../images/logo/classe.png">' +
+                       '</div>'
+            }
+
+          $("#header").append(header);
+        });
+        </script>
+
+
+
+          <!--div class="col-sm-9">&nbsp;</div>
+          <div class="col-sm-3">
+            <img style="width: 50%; 
+                      height: 25%; 
+                      margin-top: 100%; 
+                      margin-left: 50%;"
+               src="../images/logo/alt1.png">
+
+          </div-->
+
+        <div class="dropdown" onclick="openNav()">
+          <button class="btn btn-secondary dropdown-toggle" type="button"
               id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false" ><i class="fa fa-bars"  ></i></button>
 
-          </div>
+        </div>
 
-          </div>
+      </div>
         </div>
         <!-- MENU -->
-
-    </div>
 
     <div class="container-fluid">
       <div class="row">
