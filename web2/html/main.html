@@ -37,7 +37,7 @@
         <a href="#">Eventos</a>
         <a href="#">Contactos</a>
     </div>
-    
+
     <div class="no-class">
 
       <!-- MENU -->
@@ -45,9 +45,9 @@
 
         <script type="text/javascript">
           $( function() {
-            
+
             var header;
-            
+
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
 
                 header = '<div class="col-sm-12 mobile" align="center">' +
@@ -69,9 +69,9 @@
 
           <!--div class="col-sm-9">&nbsp;</div>
           <div class="col-sm-3">
-            <img style="width: 50%; 
-                      height: 25%; 
-                      margin-top: 100%; 
+            <img style="width: 50%;
+                      height: 25%;
+                      margin-top: 100%;
                       margin-left: 50%;"
                src="../images/logo/alt1.png">
 
@@ -80,8 +80,9 @@
         <div class="dropdown" onclick="openNav()">
           <button class="btn btn-secondary dropdown-toggle" type="button"
               id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false" ><i class="fa fa-bars"  ></i></button>
-
+              aria-expanded="false" style="color: #f9f9f9;  background-color: #5c5e5c;">
+              <i class="fa fa-bars"></i>
+            </button>
         </div>
 
       </div>
@@ -90,10 +91,10 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12" style="margin-top: 2%;">
 
           <!-- Clubs -->
-          <div class="col-sm-3" >
+          <div class="col-sm-3">
              <input type="hidden" style="margin-top: 1%; width:100%" id=cities >
           </div>
 
@@ -172,17 +173,31 @@
 
          <!-- Calendar -->
          <div class="col-sm-3">
-           <input type="hidden" type="text"  id="datepicker" size="0">
-           <i class="fa fa-calendar calendar" style="margin-top: 2%"; id="icon-calendar"></i>
-         </div>
+            <input type="hidden" type="text"  id="datepicker" size="0">
+            <i class="fa fa-calendar calendar" style="margin-top: 2%"; id="icon-calendar"></i>
+            <h5 id="date" style="display:inline-block; margin-left: 5px;"></h5>
+        </div>
 
          <script>
            $( function() {
              $( "#datepicker" ).datepicker({
                showAnim: 'slideDown',
-               buttonImageOnly: true
+               buttonImageOnly: true,
+               dateFormat: "dd/mm/yy",
+               onSelect: function (date) {
+                  $("#date").text(date);
+               }
              });
            });
+
+           var date = new Date()
+           , day = date.getUTCDate()
+           , month = date.getMonth() +1
+           , formatedMonth = month < 10 ? "0" + month : month
+           , year = date.getFullYear()
+           , formatedDate = day + "/" + formatedMonth + "/" + year;
+
+           $("#date").text(formatedDate);
 
            $("#icon-calendar").click(function() {
              if (!$("#datepicker").datepicker( "widget" ).is(":visible")) {
@@ -236,7 +251,7 @@
                             '</div>'+
                           '</div>'+
                       '</div>'+
-                    '</div>';  
+                    '</div>';
 
                   $( "#events" ).append(box);
               }
